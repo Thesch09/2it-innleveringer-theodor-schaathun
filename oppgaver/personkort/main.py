@@ -56,13 +56,7 @@ def addAGuy(source):
                     break
                 except ValueError:
                     print("Det er Ikke et Tall")
-            while True:
-                height = input("Hvor høy er du?\n")
-                try:
-                    height = int(height)
-                    break
-                except ValueError:
-                    print("Det er Ikke et Tall")
+            height = input("Hvor høy er du?\n")
             while True:
                 oohYoureACodeLiker = input("Liker du programmering?? y/n\n").lower()
                 if oohYoureACodeLiker == "y" or oohYoureACodeLiker == "n":
@@ -70,7 +64,11 @@ def addAGuy(source):
                 else:
                     print("Det er ikke y/n...")
             funielFactiel = input("Og til slutt, gi meg en fun fact om deg. Gi den til meg :gun:")
-
+        if oohYoureACodeLiker == "y":
+            oohYoureACodeLiker = True
+        else:
+            oohYoureACodeLiker = False
+        guys.update({name:[age,height,oohYoureACodeLiker,funielFactiel]})
 
 guys = {}
 
@@ -109,4 +107,39 @@ while True:
     elif inputio == 3:
         langSetup()
     elif inputio == 1:
-        pass
+        addAGuy("noob")
+    elif inputio == 2:
+        for guy in guys:
+            if lang == "en":
+                print(f"Name: {guy}")
+                print(f"Age: {guys[guy][0]}")
+                print(f"Height: {guys[guy][1]}")
+                if guys[guy][2]:
+                    print("Likes programming")
+                else:
+                    print("HATES programming. Nr. 1 programming HATER")
+                print(f"Fun Fact: {guys[guy][3]}")
+                print("\nWhat will you do next?")
+                print("1. Stop")
+                print("2. Kill (delete)")
+                print("Everything else, next guy")
+            elif lang == "no":
+                print(f"Navn: {guy}")
+                print(f"Alder: {guys[guy][0]}")
+                print(f"Høyde: {guys[guy][1]}")
+                if guys[guy][2]:
+                    print("Liker programmering")
+                else:
+                    print("HATER programmering. Nr. 1 programmering HATER")
+                print(f"Fun Fact: {guys[guy][3]}")
+                print("\nHva vil du gjøre?")
+                print("1. Stoppe")
+                print("2. Mord (slett)")
+                print("Alt annet, neste person")
+            
+            inputio = input()
+            if inputio == "1":
+                break
+            elif inputio == "2":
+                guys.pop(guy)
+                break
