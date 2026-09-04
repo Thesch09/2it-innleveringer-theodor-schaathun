@@ -20,6 +20,60 @@ def langSetup():
             print("Null språk funnet\nNo language detected")
         input("Trykk på ENTER for å fortsette\nPress ENTER to continue\n")
 
+def addAGuy(source):
+    global lang
+    global guys
+    if source == "noob":
+        if lang == "en":
+            name = input("What is your name?\n")
+            while True:
+                age = input("How old are you?\n")
+                try:
+                    age = int(age)
+                    break
+                except ValueError:
+                    print("That's Not a Number")
+            while True:
+                height = input("How tall are you?\n")
+                try:
+                    height = int(height)
+                    break
+                except ValueError:
+                    print("That's Not a Number")
+            while True:
+                oohYoureACodeLiker = input("Do you like programming? y/n\n").lower()
+                if oohYoureACodeLiker == "y" or oohYoureACodeLiker == "n":
+                    break
+                else:
+                    print("That's not y/n...")
+            funielFactiel = input("And finally, give me a fun fact of yours. Hand it over :gun:")
+        if lang == "no":
+            name = input("Hva heter du?\n")
+            while True:
+                age = input("Hvor gammel er du?\n")
+                try:
+                    age = int(age)
+                    break
+                except ValueError:
+                    print("Det er Ikke et Tall")
+            while True:
+                height = input("Hvor høy er du?\n")
+                try:
+                    height = int(height)
+                    break
+                except ValueError:
+                    print("Det er Ikke et Tall")
+            while True:
+                oohYoureACodeLiker = input("Liker du programmering?? y/n\n").lower()
+                if oohYoureACodeLiker == "y" or oohYoureACodeLiker == "n":
+                    break
+                else:
+                    print("Det er ikke y/n...")
+            funielFactiel = input("Og til slutt, gi meg en fun fact om deg. Gi den til meg :gun:")
+
+
+guys = {}
+
 langSetup()
 while True:
     os.system("cls")
@@ -52,3 +106,7 @@ while True:
         elif lang == "no":
             print("HA DET!!!")
         break
+    elif inputio == 3:
+        langSetup()
+    elif inputio == 1:
+        pass
