@@ -8,12 +8,20 @@ while True:
             print("Det er enten mer enn 100 eller mindre enn 0. Velg et tall imellom")
         else:
             if poeng < 50:
-               print("Dessverre har du ikke bestått")
-            elif poeng < 70:
-                print("Du har bestått")
-            elif poeng < 90:
-                print("Du har gjort det ganske så bra")
-            elif poeng >= 90:
-                print("Du har gjort det VELDIG bra")
+                if poeng == 0:
+                   print("Det var [red]VELDIG[/] dårlig. Hvordan?")
+                else:
+                    print("Dessverre har du [red]ikke bestått.")
+            else:
+                message = "Du har [green]bestått[/]"    
+                if poeng < 70:
+                    message += "."
+                elif poeng < 90:
+                    message += ", og du gjorde det godt."
+                elif poeng < 100:
+                    message += ", og du gjorde det VELDIG godt!"
+                else:
+                    message += ", og du gjorde det [red]P[orange3]E[yellow]R[green]F[blue]E[purple4]K[magenta]T[white]!"
+                print(message)
     except:
         print("Det er ikke et tall. Vennligst skriv inn et tall")
