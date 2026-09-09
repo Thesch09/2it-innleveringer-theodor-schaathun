@@ -1,5 +1,7 @@
 from rich import print # fin terminal
 import os
+import time
+import random
 
 storeStock = {"Energi Drikk":25, "Baguette":45}
 playerCart = {}
@@ -41,11 +43,24 @@ def lookAtCart(storeStock, playerCart):
     input()
 
 def checkout(storeStock, playerCart):
+    totPrice = 0
     for item in playerCart:
         print(f"{playerCart[item]}x {item}: {storeStock[item]*playerCart[item]}")
+        totPrice += storeStock[item]*playerCart[item]
+    print(f"Totalt: {totPrice}")
     print("Er du klar for å betale? Skriv JA hvis du er")
     checkyOut = input()
     if checkyOut.lower() == "ja":
+        print("[red]Hacker PC...")
+        time.sleep(random.randint(5,10)/10)
+        print("[red]Hacket!")
+        print("[red]Finner kortnummer")
+        time.sleep(random.randint(5,10)/10)
+        print("[red]Funnet!")
+        print()
+        print("Takk for at du har brukt Theo-butikken i dag!")
+        print(f"{totPrice} kroner har blitt trukket fra kontoen din")
+        input()
         return True
 
 while True:
