@@ -40,7 +40,13 @@ def lookAtCart(storeStock, playerCart):
         print(f"{playerCart[item]}x {item}: {storeStock[item]*playerCart[item]}")
     input()
 
-
+def checkout(storeStock, playerCart):
+    for item in playerCart:
+        print(f"{playerCart[item]}x {item}: {storeStock[item]*playerCart[item]}")
+    print("Er du klar for å betale? Skriv JA hvis du er")
+    checkyOut = input()
+    if checkyOut.lower() == "ja":
+        return True
 
 while True:
     os.system("cls")
@@ -54,3 +60,6 @@ while True:
         buyThing(storeStock, playerCart)
     elif action == "2":
         lookAtCart(storeStock, playerCart)
+    elif action == "3":
+        if checkout(storeStock, playerCart):
+            break
