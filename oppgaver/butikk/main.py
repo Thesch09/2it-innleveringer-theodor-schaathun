@@ -2,9 +2,11 @@ from rich import print # fin terminal
 import os
 import time
 import random
+import webbrowser
 
-storeStock = {"Energi Drikk":25, "Baguette":45}
+storeStock = {"Energi Drikk":25, "Baguette":45, "Rosinbolle":10, "Grønt Eple": 15, "Brandname Cola": 27, "Sukkerfri Brandname Cola": 25, "Youtube Video":9999.99}
 playerCart = {}
+youtubeVideos = [("Never Gonna Give You Up", "dQw4w9WgXcQ"),("Let's Play ALL of Tears of the Kingdom", "3B21d32wn9s"), ("SCOTLAND FOREVER", "-BD1vHgYRgg"), ("xnopyt","aMgCBYgVwsI"), ("xnopyt","DV5HBcjw_8I"), ("Everything?","CccHBlGrOu8"), ("Nuthing?", "BG7273yDpdA"), ("a complete history of the star trek franchise, 100% from memory, with no fact checking" ,"YyKyyDtLrSE")]
 
 def buyThing(storeStock, playerCart):
     goodUnconfirmed = True
@@ -12,7 +14,7 @@ def buyThing(storeStock, playerCart):
         os.system("cls")
         print("Varer\n")
         for ware in storeStock:
-            print(f"{ware}: {storeStock[ware]}")
+            print(f"{ware}: {storeStock[ware]}kr")
         print("\nHva vil du kjøpe?")
         purchasable = input().lower().split(" ")
         newStr = ""
@@ -39,15 +41,23 @@ def buyThing(storeStock, playerCart):
 
 def lookAtCart(storeStock, playerCart):
     for item in playerCart:
-        print(f"{playerCart[item]}x {item}: {storeStock[item]*playerCart[item]}")
+        print(f"{playerCart[item]}x {item}: {storeStock[item]*playerCart[item]}kr")
     input()
+
+def openYT(playerCart):
+    print(f"Siden du kjøpte {playerCart["Youtube Video"]} videoer, så åpnes de videoene")
+    for video in range(playerCart["Youtube Video"]):
+        vid = youtubeVideos[random.randint(0,len(youtubeVideos)-1)]
+        webbrowser.open(f"https://www.youtube.com/watch?v={vid[1]}", new=0, autoraise=True)
+        print(f"Åpner {vid[0]}")
+        time.sleep(random.randint(3,5))
 
 def checkout(storeStock, playerCart):
     totPrice = 0
     for item in playerCart:
-        print(f"{playerCart[item]}x {item}: {storeStock[item]*playerCart[item]}")
+        print(f"{playerCart[item]}x {item}: {storeStock[item]*playerCart[item]}kr")
         totPrice += storeStock[item]*playerCart[item]
-    print(f"Totalt: {totPrice}")
+    print(f"Totalt: {totPrice}kr")
     print("Er du klar for å betale? Skriv JA hvis du er")
     checkyOut = input()
     if checkyOut.lower() == "ja":
@@ -61,6 +71,9 @@ def checkout(storeStock, playerCart):
         print("Takk for at du har brukt Theo-butikken i dag!")
         print(f"{totPrice} kroner har blitt trukket fra kontoen din")
         input()
+        if "Youtube Video" in playerCart:
+            if playerCart["Youtube Video"] > 0:
+                openYT(playerCart)
         return True
 
 while True:
