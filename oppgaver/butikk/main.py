@@ -13,18 +13,12 @@ YTvideos = {}
 with open(r"oppgaver/butikk/jsons/store.json") as jason:
     josh = json.loads(jason.read())
     storeStock = josh
-    print(storeStock)
-    input()
 with open(r"oppgaver/butikk/jsons/previousPurchase.json") as jason:
     josh = json.loads(jason.read())
     previousPurchases = josh
-    print(previousPurchases)
-    input()
 with open(r"oppgaver/butikk/jsons/youtube.json") as jason:
     josh = json.loads(jason.read())
     YTvideos = josh
-    print(YTvideos)
-    input()
 
 def addPerson(playerCart):
     while True:
@@ -79,13 +73,12 @@ def lookAtCart(storeStock, playerCart):
 
 def openYT(playerCart):
     print(f"Siden du kjøpte {playerCart["Youtube Video"]} videoer, så åpnes de videoene")
+    YTurls = []
+    YTtitles = []
+    for video in YTvideos:
+        YTurls.append(YTvideos[video])
+        YTtitles.append(video)
     for video in range(playerCart["Youtube Video"]):
-        YTurls = []
-        YTtitles = []
-        for video in YTvideos:
-            YTurls.append(YTvideos[video])
-            YTtitles.append(video)
-        print(YTurls)
         whichVid = random.randint(0,len(YTvideos)-1)
         vid = YTurls[whichVid]
         webbrowser.open(f"https://www.youtube.com/watch?v={vid}", new=0, autoraise=True)
@@ -116,6 +109,26 @@ def checkout(storeStock, playerCart):
                 openYT(playerCart)
         return True
 
+def lookAtPeople(pP, sS):
+    if len(pP) < 1:
+        os.system("cls")
+        print("But nobody came.")
+        input()
+        os.system("cls")
+        print("But nobody came.\nDet er en referanse til Undertale!")
+        input()
+        return
+    else:
+        for person in pP:
+            os.system("cls")
+            print(f"Navn: {person}")
+            for item in pP[person]:
+                if item in sS: # storeStock
+                    print(f"{pP[person][item]}x {item}: {sS[item]*pP[person][item]}")
+                else:
+                    print(f"Ukjent vare: {pP[person][item]}x {item}")
+            input()
+
 while True:
     os.system("cls")
     print("Velkommen til Theo-butikken!!!")
@@ -123,6 +136,7 @@ while True:
     print("1. Kjøpe noe")
     print("2. Se handlekurven")
     print("3. Betale og DRA!!!")
+    print("4. Se på forrige folk som har vært her")
     action = input()
     if action == "1":
         buyThing(storeStock, playerCart)
@@ -132,3 +146,5 @@ while True:
         if checkout(storeStock, playerCart):
             addPerson(playerCart)
             break
+    elif action == "4":
+        lookAtPeople(previousPurchases,storeStock)
