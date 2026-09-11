@@ -8,15 +8,22 @@ import json
 storeStock = {}
 playerCart = {}
 previousPurchases = {}
-youtubeVideos = {"Never Gonna Give You Up":"dQw4w9WgXcQ", "Let's Play ALL of Tears of the Kingdom":"3B21d32wn9s", "SCOTLAND FOREVER":"-BD1vHgYRgg", "xnopyt - Scott":"aMgCBYgVwsI", "xnopyt - Rin":"DV5HBcjw_8I", "Everything?":"CccHBlGrOu8", "Nuthing?":"BG7273yDpdA", "a complete history of the star trek franchise, 100% from memory, with no fact checking":"YyKyyDtLrSE"}
+YTvideos = {}
 
 with open(r"oppgaver/butikk/jsons/store.json") as jason:
-    josh = json.loads(jason.readline())
+    josh = json.loads(jason.read())
     storeStock = josh
+    print(storeStock)
+    input()
 with open(r"oppgaver/butikk/jsons/previousPurchase.json") as jason:
     josh = json.loads(jason.read())
     previousPurchases = josh
     print(previousPurchases)
+    input()
+with open(r"oppgaver/butikk/jsons/youtube.json") as jason:
+    josh = json.loads(jason.read())
+    YTvideos = josh
+    print(YTvideos)
     input()
 
 def addPerson(playerCart):
@@ -34,7 +41,6 @@ def addPerson(playerCart):
                 jason.write(josh)
             return
     
-
 def buyThing(storeStock, playerCart):
     goodUnconfirmed = True
     while goodUnconfirmed:
@@ -76,11 +82,11 @@ def openYT(playerCart):
     for video in range(playerCart["Youtube Video"]):
         YTurls = []
         YTtitles = []
-        for video in youtubeVideos:
-            YTurls.append(youtubeVideos[video])
+        for video in YTvideos:
+            YTurls.append(YTvideos[video])
             YTtitles.append(video)
         print(YTurls)
-        whichVid = random.randint(0,len(youtubeVideos)-1)
+        whichVid = random.randint(0,len(YTvideos)-1)
         vid = YTurls[whichVid]
         webbrowser.open(f"https://www.youtube.com/watch?v={vid}", new=0, autoraise=True)
         print(f"Åpner {YTtitles[whichVid]}")
