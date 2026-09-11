@@ -3,10 +3,15 @@ import os
 import time
 import random
 import webbrowser
+import json
 
-storeStock = {"Energi Drikk":25, "Baguette":45, "Rosinbolle":10, "Grønt Eple": 15, "Brandname Cola": 27, "Sukkerfri Brandname Cola": 25, "Youtube Video":9999.99}
+storeStock = {}
 playerCart = {}
 youtubeVideos = [("Never Gonna Give You Up", "dQw4w9WgXcQ"),("Let's Play ALL of Tears of the Kingdom", "3B21d32wn9s"), ("SCOTLAND FOREVER", "-BD1vHgYRgg"), ("xnopyt","aMgCBYgVwsI"), ("xnopyt","DV5HBcjw_8I"), ("Everything?","CccHBlGrOu8"), ("Nuthing?", "BG7273yDpdA"), ("a complete history of the star trek franchise, 100% from memory, with no fact checking" ,"YyKyyDtLrSE")]
+
+with open(r"oppgaver\butikk\store.json") as jason:
+    josh = json.loads(jason.readline())
+    storeStock = josh
 
 def buyThing(storeStock, playerCart):
     goodUnconfirmed = True
@@ -90,4 +95,7 @@ while True:
         lookAtCart(storeStock, playerCart)
     elif action == "3":
         if checkout(storeStock, playerCart):
+            with open(r"oppgaver/butikk/previousPurchase.json", "a") as jason:
+                josh = json.dumps(playerCart)
+                jason.write(josh)
             break
