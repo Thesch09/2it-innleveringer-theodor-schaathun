@@ -7,9 +7,9 @@ import json
 
 storeStock = {}
 playerCart = {}
-youtubeVideos = [("Never Gonna Give You Up", "dQw4w9WgXcQ"),("Let's Play ALL of Tears of the Kingdom", "3B21d32wn9s"), ("SCOTLAND FOREVER", "-BD1vHgYRgg"), ("xnopyt","aMgCBYgVwsI"), ("xnopyt","DV5HBcjw_8I"), ("Everything?","CccHBlGrOu8"), ("Nuthing?", "BG7273yDpdA"), ("a complete history of the star trek franchise, 100% from memory, with no fact checking" ,"YyKyyDtLrSE")]
+youtubeVideos = {"Never Gonna Give You Up":"dQw4w9WgXcQ", "Let's Play ALL of Tears of the Kingdom":"3B21d32wn9s", "SCOTLAND FOREVER":"-BD1vHgYRgg", "xnopyt - Scott":"aMgCBYgVwsI", "xnopyt - Rin":"DV5HBcjw_8I", "Everything?":"CccHBlGrOu8", "Nuthing?":"BG7273yDpdA", "a complete history of the star trek franchise, 100% from memory, with no fact checking":"YyKyyDtLrSE"}
 
-with open(r"oppgaver\butikk\store.json") as jason:
+with open(r"oppgaver/butikk/jsons/store.json") as jason:
     josh = json.loads(jason.readline())
     storeStock = josh
 
@@ -52,9 +52,16 @@ def lookAtCart(storeStock, playerCart):
 def openYT(playerCart):
     print(f"Siden du kjøpte {playerCart["Youtube Video"]} videoer, så åpnes de videoene")
     for video in range(playerCart["Youtube Video"]):
-        vid = youtubeVideos[random.randint(0,len(youtubeVideos)-1)]
-        webbrowser.open(f"https://www.youtube.com/watch?v={vid[1]}", new=0, autoraise=True)
-        print(f"Åpner {vid[0]}")
+        YTurls = []
+        YTtitles = []
+        for video in youtubeVideos:
+            YTurls.append(youtubeVideos[video])
+            YTtitles.append(video)
+        print(YTurls)
+        whichVid = random.randint(0,len(youtubeVideos)-1)
+        vid = YTurls[whichVid]
+        webbrowser.open(f"https://www.youtube.com/watch?v={vid}", new=0, autoraise=True)
+        print(f"Åpner {YTtitles[whichVid]}")
         time.sleep(random.randint(3,5))
 
 def checkout(storeStock, playerCart):
@@ -95,7 +102,7 @@ while True:
         lookAtCart(storeStock, playerCart)
     elif action == "3":
         if checkout(storeStock, playerCart):
-            with open(r"oppgaver/butikk/previousPurchase.json", "a") as jason:
-                josh = json.dumps(playerCart)
+            with open(r"oppgaver/butikk/jsons/previousPurchase.json", "a") as jason:
+                josh = json.dumps(playerCart)+"\n"
                 jason.write(josh)
             break
