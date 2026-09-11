@@ -72,9 +72,15 @@ def lookAtCart(storeStock, playerCart):
     input()
 
 def openYT(playerCart):
-    print(f"Siden du kjøpte {playerCart["Youtube Video"]} videoer, så åpnes de videoene")
+    print(f"Siden du kjøpte {playerCart["Youtube Video"]} YouTube videoer, så åpnes de videoene")
     YTurls = []
     YTtitles = []
+    if playerCart["Youtube Video"] == len(YTvideos):
+        for vid in YTvideos:
+            webbrowser.open(f"https://www.youtube.com/watch?v={YTvideos[vid]}", new=0, autoraise=True)
+            print(f"Åpner {vid}")
+            time.sleep(random.randint(3,5))
+        return
     for video in YTvideos:
         YTurls.append(YTvideos[video])
         YTtitles.append(video)
