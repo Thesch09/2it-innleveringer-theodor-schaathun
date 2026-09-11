@@ -7,11 +7,33 @@ import json
 
 storeStock = {}
 playerCart = {}
+previousPurchases = {}
 youtubeVideos = {"Never Gonna Give You Up":"dQw4w9WgXcQ", "Let's Play ALL of Tears of the Kingdom":"3B21d32wn9s", "SCOTLAND FOREVER":"-BD1vHgYRgg", "xnopyt - Scott":"aMgCBYgVwsI", "xnopyt - Rin":"DV5HBcjw_8I", "Everything?":"CccHBlGrOu8", "Nuthing?":"BG7273yDpdA", "a complete history of the star trek franchise, 100% from memory, with no fact checking":"YyKyyDtLrSE"}
 
 with open(r"oppgaver/butikk/jsons/store.json") as jason:
     josh = json.loads(jason.readline())
     storeStock = josh
+with open(r"oppgaver/butikk/jsons/previousPurchase.json") as jason:
+    josh = json.loads(jason.read())
+    previousPurchases = josh
+    print(previousPurchases)
+    input()
+
+def addPerson(playerCart):
+    while True:
+        os.system("cls")
+        print("Før du drar, hva heter du?")
+        name = input()
+        if name in previousPurchases:
+            print("Dessverre er det navnet allerede i systemet vært, vennligst velg et annet")
+            input()
+        else:
+            previousPurchases.update({name:playerCart})
+            with open(r"oppgaver/butikk/jsons/previousPurchase.json", "w") as jason:
+                josh = json.dumps(previousPurchases)
+                jason.write(josh)
+            return
+    
 
 def buyThing(storeStock, playerCart):
     goodUnconfirmed = True
@@ -102,7 +124,5 @@ while True:
         lookAtCart(storeStock, playerCart)
     elif action == "3":
         if checkout(storeStock, playerCart):
-            with open(r"oppgaver/butikk/jsons/previousPurchase.json", "a") as jason:
-                josh = json.dumps(playerCart)+"\n"
-                jason.write(josh)
+            addPerson(playerCart)
             break
