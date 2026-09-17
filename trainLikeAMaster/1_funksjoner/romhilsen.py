@@ -2,7 +2,9 @@
 # Og hvorfor hadde jeg brukt det, denne oppgaven er ENKEL
 
 def romhilsen():
-    return "Velkommen til romstasjonen!\nGjør deg klar for avreise."
+    print("Velkommen til romstasjonen!")
+    print("Gjør deg klar for avreise.")
 
-for i in range(3):
-    print(romhilsen())
+print(romhilsen())
+print(romhilsen())
+print(romhilsen())
