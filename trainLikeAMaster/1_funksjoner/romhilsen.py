@@ -4,7 +4,8 @@
 def romhilsen():
     print("Velkommen til romstasjonen!")
     print("Gjør deg klar for avreise.")
+    print()
 
-print(romhilsen())
-print(romhilsen())
-print(romhilsen())
+romhilsen()
+romhilsen()
+romhilsen()
