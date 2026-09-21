@@ -1,4 +1,5 @@
 # Null AI/KI
+import time
 
 satellites = []
 class satellite:
@@ -23,8 +24,15 @@ class satellite:
         print(f"Planet: {self.planet}")
         print(lines)
 
-satlit = satellite("Mickey","Pluto", 4500000000)
-satlit = satellite("The Flush Five", "Eris",14410000000)
+    def sendSignal(self):
+        print(f"{self.name} sender et signal")
+        delay = self.distEarth/300000
+        time.sleep(delay/1000)
+        return delay
+
+satlit = satellite("Mickey","Pluto", 5900000000-149600000)
+satlit = satellite("The Flush Five", "Eris",10000000000-149600000)
 satlit = satellite("Lil' Jimmy", "Sola", 149600000)
 for satelliteThing in satellites:
     satelliteThing.sendMessage()
+    print(f"{satelliteThing.sendSignal():.2f}")
