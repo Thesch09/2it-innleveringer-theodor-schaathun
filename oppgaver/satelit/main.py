@@ -28,11 +28,23 @@ class satellite:
         print(f"{self.name} sender et signal")
         delay = self.distEarth/300000
         time.sleep(delay/1000)
+        print()
         return delay
+
+    def checkDelay(self,delay):
+        print(f"Forsinkelsen er {delay:.2f} ({delay/1000:.2f}) sekunder") # Forsinkelsen er {forsinkelse} ({delt på 1000}) sekunder
+        if delay < 3:
+            return "Det er direkte kommunikasjon"
+        elif delay < 30:
+            return "Kommunikasjonen er forsiket"
+        else:
+            return "Det er stor signalforsinkelse"
 
 satlit = satellite("Mickey","Pluto", 5900000000-149600000)
 satlit = satellite("The Flush Five", "Eris",10000000000-149600000)
 satlit = satellite("Lil' Jimmy", "Sola", 149600000)
 for satelliteThing in satellites:
     satelliteThing.sendMessage()
-    print(f"{satelliteThing.sendSignal():.2f}")
+    delay = satelliteThing.sendSignal()
+    print(satelliteThing.checkDelay(delay))
+    print()
