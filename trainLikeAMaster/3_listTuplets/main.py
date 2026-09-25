@@ -1,6 +1,7 @@
 # Null LLM basert AI/KI blir brukt av Theodor Schaathun
 from rich import print
 import random
+import os
 
 planets = ["Popstar", "New World", "The Planet that is slowly Cracking and Crumbling and Shattering and will soon be Lost, girl", "PNF 404", "Not Neptune"]
 print(planets)
@@ -55,4 +56,18 @@ except ValueError:
     print("You should've known that it would get you fired and banned for 48 years")
 
 if not failureToConnectUnderTheInfluence:
-    print("cont")
+    tuploid = ("Mercurius", "Venus", "Terra", "Mars")
+    print(tuploid[1])
+    for planet in tuploid:
+        print(planet)
+    try:
+        tuploid[-1] = "Jupiter" # Det kommer en type error, mer info i "except TypeError:"
+        print("how")
+    except TypeError:
+        tuploid = (tuploid[0])
+        print("[red]ERROR")
+        input()
+        os.system("cls")
+        print("Når man prøver å endre på en verdi i et tuple funker det ikke. Dette er på grunn av at det er unchangable. Hvis man for en eller annen grunn vil endre på noe kan man prøve dette:")
+        print("[blue]tuple[/] = [yellow]([/][blue]tuple[magenta][[green]0[/]][/][/],[blue]tuple[magenta][[green]1[/]][/][/],[blue]tuple[magenta][[green]2[/]][/][/],[blue]tuple[magenta][[orange3]\"Jupiter\"[/]][/][/][yellow])")
+        print("men det er komplisert og sikkert ikke verdt det")
