@@ -62,14 +62,16 @@ class meteoriteMaker:
         else:
             return "Det er høy risiko"
 
-satlit = satellite("Mickey","Pluto", 5900000000-149600000) # Mikke Mus har en hund som heter Pluto
-satlit = satellite("The Flush Five", "Eris",10000000000-149600000) # I Balatro bruker man planet kortet Eris for å oppgradere hånden flush five
-satlit = satellite("Lil' Jimmy", "Sola", 149600000)
-for satelliteThing in satellites:
-    satelliteThing.sendMessage()
-    delay = satelliteThing.sendSignal()
-    print(satelliteThing.checkDelay(delay))
-    print()
+print("Skriv NEI hvis du ikke vil se på satellitter")
+if input().lower() != "nei":
+    satlit = satellite("Mickey","Pluto", 5900000000-149600000) # Mikke Mus har en hund som heter Pluto
+    satlit = satellite("The Flush Five", "Eris",10000000000-149600000) # I Balatro bruker man planet kortet Eris for å oppgradere hånden flush five
+    satlit = satellite("Lil' Jimmy", "Sola", 149600000)
+    for satelliteThing in satellites:
+        satelliteThing.sendMessage()
+        delay = satelliteThing.sendSignal()
+        print(satelliteThing.checkDelay(delay))
+        print()
 
 meatyor = meteoriteMaker("The Phantom Thief", 1180, 40360) # Persona 5
 meatyor = meteoriteMaker("Poopcanoizer", 5000, 0) # RTGame Cities Skylines
