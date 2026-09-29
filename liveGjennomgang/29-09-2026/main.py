@@ -9,3 +9,27 @@ makeFunnyJokeAboutDictsHere = {
 for entry in makeFunnyJokeAboutDictsHere:
     print(f"{entry}:{makeFunnyJokeAboutDictsHere[entry]}")
 print(makeFunnyJokeAboutDictsHere)
+
+fileContent = {} # It be happy with it's life
+with open(r"liveGjennomgang/29-09-2026/fil.txt", "r") as fil:
+    #print(fil.read())
+    print(type(fil))
+    for line in fil:
+        #print(type(line))
+
+        line = str(line)
+        lineSplit = line.split("\n")
+        lineSplit = lineSplit[0].split(":")
+        print(lineSplit[0])
+        try:
+            lineVal = int(lineSplit[1])
+            print("Value is an int")
+        except ValueError:
+            try:
+                lineVal = float(lineSplit[1])
+                print("Value is a float")
+            except ValueError:
+                lineVal = lineSplit[1]
+                print("Value is a string")
+        fileContent.update({lineSplit[0]:lineVal})
+print(fileContent)

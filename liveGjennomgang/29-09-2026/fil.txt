@@ -1,0 +1,5 @@
+funnies:joke
+even funnieser:joke
+boringo:What mi c e   i n   t h e   c a r p e t
+int:58
+float:0.5
