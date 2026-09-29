@@ -12,7 +12,7 @@ for entry in makeFunnyJokeAboutDictsHere:
 print(makeFunnyJokeAboutDictsHere)
 
 fileContent = {} # It be happy with it's life
-with open(r"liveGjennomgang/29-09-2026/fil.txt", "r") as fil:
+with open(r"liveGjennomgang/29-09-2026/mappe1/fil.txt", "r") as fil:
     #print(fil.read())
     print(type(fil))
     for line in fil:
@@ -39,7 +39,7 @@ with open(r"liveGjennomgang/29-09-2026/fil.txt", "r") as fil:
 print(fileContent)
 
 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," ","\t",". ", ", ", ":","end"]
-with open(r"liveGjennomgang/29-09-2026/otherFil.txt", "a") as fil:
+with open(r"liveGjennomgang/29-09-2026/mappe1/otherFil.txt", "a") as fil:
     stringCheese = ""
     while True:
         letter = alphabet[random.randint(0,len(alphabet)-1)]
@@ -58,13 +58,13 @@ try:
     mooms = int(mooms)
 except ValueError:
     mooms = ""
-with open(r"liveGjennomgang/29-09-2026/thirdFil.txt","w") as fil:
+with open(r"liveGjennomgang/29-09-2026/mappe1/thirdFil.txt","w") as fil:
     fil.write(f"{planet}\n")
     if mooms != "":
         fil.write(f"\t{mooms} mooms\n")
     print(f"Saved {planet}")
 
 print()
-with open(r"liveGjennomgang/29-09-2026/thirdFil.txt","r") as fil:
+with open(r"liveGjennomgang/29-09-2026/mappe1/thirdFil.txt","r") as fil:
     for line in fil:
         print(line.split("\n")[0])
